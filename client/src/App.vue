@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import OptionsAPI from './components/OptionsAPI.vue';
-import CompositionAPI from './components/CompositionAPI.vue';
+import BoardComponent from './components/BoardComponent.vue';
+import NavbarComponent from './components/NavbarComponent.vue';
 </script>
 
 <template>
-	<!-- <OptionsAPI></OptionsAPI>
-	<hr/> -->
-	<CompositionAPI></CompositionAPI>
+	<NavbarComponent></NavbarComponent>
+	<div>
+		<router-view></router-view>
+	</div>
 </template>
 
 <style>

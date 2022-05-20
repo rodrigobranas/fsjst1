@@ -3,12 +3,12 @@ import Card from "./Card";
 export default class Column {
 	cards: Card[];
 
-	constructor (public name: string, public hasEstimative: boolean = false) {
+	constructor (public idColumn: number | undefined, public name: string, public hasEstimative: boolean = false) {
 		this.cards = [];
 	}
 
-	addCard (title: string, estimative: number) {
-		this.cards.push(new Card(title, estimative));
+	addCard (card: Card) {
+		this.cards.push(card);
 	}
 
 	deleteCard (card: Card) {
