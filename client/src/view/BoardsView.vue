@@ -21,6 +21,8 @@ onMounted(async () => {
 </script>
 <template>
 	{{ username }}
+	{{ $i18n.$language }}
+	{{ $i18n.translate("Boards") }}
 	<div v-for="board of state.boards">
 		<!-- <router-link :to="{ path: `/boards/${board.idBoard}` }">{{ board.name }}</router-link> -->
 		<div @click="openBoard(board)">{{ board.name }}</div>

@@ -20,10 +20,10 @@ const newCard = reactive<Card>(new Card("", 0));
 </script>
 <template>
 	<div class="column">
-		{{ column.name }} <span @click="board.deleteColumn(column)">(x)</span>
+		{{ column.name }} <span class="delete-column" @click="board.deleteColumn(column)">(x)</span>
 		<br />
 		<div v-if="column.hasEstimative">
-			{{ column.getEstimative() }}
+			<span class="estimative">{{ column.getEstimative() }}</span>
 		</div>
 		<div v-else>
 			-
@@ -32,7 +32,7 @@ const newCard = reactive<Card>(new Card("", 0));
 		<slot></slot>
 		<div class="new-card">
 			<hr/>
-			<input type="text" v-model="newCard.title" @keyup.enter="board.addCard(column.name, newCard.title, 0)" placeholder="Title" />
+			<input class="new-card-input" type="text" v-model="newCard.title" @keyup.enter="board.addCard(column.name, newCard.title, 0)" placeholder="Title" />
 		</div>
 	</div>
 </template>

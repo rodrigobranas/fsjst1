@@ -26,11 +26,11 @@ const columnName = ref("");
 				<span>{{ board.name }}</span>
 			</div>
 			<div class="board-header-item">
-				{{ board.getEstimative() }} hours
+				<span id="estimative">{{ board.getEstimative() }}</span> hours
 			</div>
 			<div class="board-header-item">
-				<input type="text" v-model="columnName" placeholder="Column Name"/>
-				<button @click="board.addColumn(undefined, columnName)">Add</button>
+				<input id="new-column-input" type="text" v-model="columnName" placeholder="Column Name"/>
+				<button id="new-column-button" @click="board.addColumn(undefined, columnName)">Add</button>
 			</div>
 		</div>
 		<br/>

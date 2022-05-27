@@ -12,6 +12,10 @@ export default class HapiHttp implements Http {
         return url.replace(/\$/g, "");
     }
 
+	setMiddleware(fn: any): void {
+		throw new Error("Method not implemented.");
+	}
+
     async addRoute(method: string, url: string, fn: any): Promise<void> {
         this.server.route({
             method,

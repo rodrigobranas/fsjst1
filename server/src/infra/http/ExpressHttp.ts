@@ -9,10 +9,34 @@ export default class ExpressHttp implements Http {
 		this.app.use(express.json());
 		this.app.use(function (req: any, res: any, next: any) {
 			res.header("Access-Control-Allow-Origin", "*");
-			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 			res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 			next();
 		});
+		this.app.use(function (req: any, res: any, next: any) {
+			if (req.method !== "OPTIONS" && req.url !== "/login") {
+				const token = req.headers.authorization.replace("Bearer ", "");
+				if (token !== "123456") {
+					// localizado o usuário
+					//req.user = user
+					res.status(401).end();
+					return;
+				}
+			}
+			next();
+		});
+	}
+
+	setMiddleware(fn: any): void {
+		this.app.use(function (req: any, res: any, next: any) {
+			try {
+				fn(req.params, req.body, req.headers);
+				next();
+			} catch (e) {
+				// dependendo do tipo de erro
+				res.status(401).end();
+			}
+		});	
 	}
 
 	addRoute(method: string, url: string, callback: Function): void {
