@@ -2,5 +2,13 @@
 defineProps(["title"]);
 </script>
 <template>
-	{{ title }}
+	<div class="card-component">
+		<h6>{{ title }}</h6>
+	</div>
 </template>
+
+<style>
+.card-component {
+	padding: 20px;
+}
+</style>

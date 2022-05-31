@@ -9,6 +9,8 @@ import { createRouter, createWebHistory, createWebHashHistory } from "vue-router
 import { createPinia } from 'pinia';
 import { useAuthStore } from './store/AuthStore';
 import i18n from './plugin/i18n';
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/font-awesome/css/font-awesome.css";
 
 const httpClient = new AxiosAdapter();
 const serviceFactory = new ServiceFactory(httpClient, "http://localhost:8000");

@@ -4,11 +4,18 @@ import { useAuthStore } from '../store/AuthStore';
 const authStore = useAuthStore();
 </script>
 <template>
-	username: {{ authStore.session.username }}<br/>
-	token: {{ authStore.session.token }}<br/>
-	<router-link to="/boards">boards</router-link><br/>
-	<router-link to="/login">login</router-link><br/>
-	<a href="#" @click="$i18n.setLanguage('en')">English</a>
-	<a href="#" @click="$i18n.setLanguage('pt')">Portuguese</a>
-	<button @click="authStore.logout()">Logout</button>
+	<div class="navbar">
+		<div class="navbar-brand">
+			branas.io - FullStackJS
+		</div>
+		<button class="btn btn-info" @click="authStore.logout()">Logout</button>
+	</div>
 </template>
+
+<style>
+.navbar {
+	background-color: #EEE;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+</style>

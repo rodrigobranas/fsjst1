@@ -3,6 +3,7 @@ import { reactive, ref, onMounted, inject } from 'vue';
 import Board from '../domain/entity/Board';
 import ServiceFactory from '../factory/ServiceFactory';
 import BoardComponent from '../components/BoardComponent.vue';
+import NavbarComponent from '../components/NavbarComponent.vue';
 import { useRoute, useRouter } from 'vue-router';
 import DomainEvent from '../event/DomainEvent';
 
@@ -32,6 +33,18 @@ onMounted(async () => {
 });
 </script>
 <template>
-	<div @click="back()">Back</div>
-	<BoardComponent :board="state.board"></BoardComponent>
+	<NavbarComponent></NavbarComponent>
+	<div class="board">
+		<div @click="back()">Back</div>
+		<h3>{{ state.board.name }}</h3>
+		<h6><span id="estimative">{{ state.board.getEstimative() }}</span> hours</h6>
+		<hr/>
+		<BoardComponent :board="state.board"></BoardComponent>
+	</div>
 </template>
+
+<style>
+.board {
+	padding: 20px;
+}
+</style>

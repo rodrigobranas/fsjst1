@@ -20,19 +20,26 @@ const newCard = reactive<Card>(new Card("", 0));
 </script>
 <template>
 	<div class="column">
-		{{ column.name }} <span class="delete-column" @click="board.deleteColumn(column)">(x)</span>
-		<br />
-		<div v-if="column.hasEstimative">
-			<span class="estimative">{{ column.getEstimative() }}</span>
-		</div>
-		<div v-else>
-			-
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h4>{{ column.name }}</h4>
+				<div v-if="column.hasEstimative">
+					<h6><span class="estimative">{{ column.getEstimative() }} hours</span></h6>
+				</div>
+				<div v-else>
+					<h6>-</h6>
+				</div>
+			</div>
+			<div class="col-md-2 text-right">
+				<span class="delete-column" @click="board.deleteColumn(column)"><span class="fa fa-trash"></span></span>
+			</div>
 		</div>
 		<hr />
 		<slot></slot>
 		<div class="new-card">
 			<hr/>
-			<input class="new-card-input" type="text" v-model="newCard.title" @keyup.enter="board.addCard(column.name, newCard.title, 0)" placeholder="Title" />
+			<input class="new-card-input form-control" type="text" v-model="newCard.title" @keyup.enter="board.addCard(column.name, newCard.title, 0)" placeholder="Title" />
 		</div>
 	</div>
 </template>
@@ -42,9 +49,9 @@ const newCard = reactive<Card>(new Card("", 0));
 	position: relative;
 	display: inline-block;
 	font-size: 14px;
-	width: 110px;
-	background-color: #EEE;
-	min-height: 200px;
+	width: 300px;
+	background-color: #FFF;
+	min-height: 800px;
 	border: 1px solid #000;
 	text-align: center;
 	margin-right: 1px;
@@ -56,13 +63,11 @@ const newCard = reactive<Card>(new Card("", 0));
 .new-card {
 	position: absolute;
 	bottom: 0;
-	width: 100px;
-	margin-bottom: 5px;
+	width: 100%;
+	padding: 10px;
 	text-align: center;
 }
 
 .new-card input {
-	width: 100%;
-	margin-bottom: 5px;
 }
 </style>

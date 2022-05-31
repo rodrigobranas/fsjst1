@@ -17,6 +17,7 @@ export const useAuthStore = defineStore("authStore", {
 				this.session.username = session.username;
 				this.session.token = session.token;
 				localStorage.setItem("token", session.token || "");
+				this.$router.push("/boards");
 			}
 		},
 		logout () {

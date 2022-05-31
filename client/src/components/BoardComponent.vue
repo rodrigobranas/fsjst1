@@ -21,27 +21,22 @@ const columnName = ref("");
 
 <template>
 	<div>
-		<div class="board-header">
-			<div class="board-header-item">
-				<span>{{ board.name }}</span>
-			</div>
-			<div class="board-header-item">
-				<span id="estimative">{{ board.getEstimative() }}</span> hours
-			</div>
-			<div class="board-header-item">
-				<input id="new-column-input" type="text" v-model="columnName" placeholder="Column Name"/>
-				<button id="new-column-button" @click="board.addColumn(undefined, columnName)">Add</button>
-			</div>
-		</div>
+		<input id="new-column-input" class="form-control" type="text" v-model="columnName" placeholder="Column Name"/>
+		<button id="new-column-button" class="btn btn-info" @click="board.addColumn(undefined, columnName)">Add</button>
 		<br/>
 		<ColumnComponent :board="board" :column="column" v-for="column in board.columns" @dragover="board.moveTo(column)">
 			<div v-for="card in column.cards">
 				<CardComponent :board="board" :column="column" :card="card" :style="{ 'background-color': card.color }">
-					<CardActionsComponent></CardActionsComponent>
-					<br/>
-					<CardEstimativeComponent :column="column" :card="card"></CardEstimativeComponent>
-					<br/>
 					<CardTitleComponent :title="card.title"></CardTitleComponent>
+					<br/>
+					<div class="row">
+						<div class="col-md-6">
+							<CardEstimativeComponent :column="column" :card="card"></CardEstimativeComponent>
+						</div>
+						<div class="col-md-6 text-right">
+							<CardActionsComponent :column="column" :card="card"></CardActionsComponent>
+						</div>
+					</div>
 				</CardComponent>
 			</div>
 		</ColumnComponent>
@@ -55,9 +50,11 @@ const columnName = ref("");
 	flex-direction: row;
 }
 
-.board-header-item {
+#new-column-input {
+	display: inline-block;
+	vertical-align: top;
 	width: 200px;
-	background-color: #EEE;
-	border: 1px solid #000;
+	margin-bottom: 20px;
+	margin-right: 10px;
 }
 </style>
