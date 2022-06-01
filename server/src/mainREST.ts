@@ -9,10 +9,6 @@ import UserRepositoryMemory from "./infra/repository/memory/UserRepositoryMemory
 
 const http = new ExpressHttp();
 
-http.setMiddleware(function (params: any, body: any, headers: any) {
-	
-});
-
 const connection = new PgPromiseConnection();
 const boardRepository = new BoardRepositoryDatabase(connection);
 const boardController = new BoardController(http, boardRepository);

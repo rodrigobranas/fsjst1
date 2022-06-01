@@ -25,7 +25,7 @@ test("Deve obter um quadro", async function () {
 	const idBoard = await boardRepository.save(board);
 	const getBoard = new GetBoard(boardRepository);
 	const getBoardOutput = await getBoard.execute(idBoard);
-	const cards = getBoardOutput.cards;
+	const cards = getBoardOutput.columns[0].cards;
 	expect(cards[0].title).toBe("a");
 	expect(cards[0].estimative).toBe(3);
 	await boardRepository.delete(idBoard);
